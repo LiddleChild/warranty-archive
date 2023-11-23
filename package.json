@@ -1,0 +1,17 @@
+{
+  "name": "warranty-archive",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "pnpm --filter client",
+    "server": "pnpm --filter server",
+    "dev": "pnpm --recursive --parallel --stream run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "server": "^1.0.38"
+  }
+}
