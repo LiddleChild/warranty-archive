@@ -7,7 +7,8 @@
     "client": "pnpm --filter client",
     "server": "pnpm --filter server",
     "shared": "pnpm --filter shared",
-    "dev": "pnpm --recursive --parallel --stream run dev"
+    "dev": "pnpm --recursive --parallel --stream run dev",
+    "build": "pnpm run client build && pnpm run server build"
   },
   "keywords": [],
   "author": "",
