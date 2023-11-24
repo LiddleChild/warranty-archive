@@ -6,16 +6,17 @@ import { getAllWarranties } from "./controller/controller.api";
 
 const main = async () => {
   await postgresDataSource.initialize();
+  console.log("Database connected");
+
   WarrantyRepository.getInstance().initialize(postgresDataSource);
 
   const app = express();
-
   app.use(express.json());
 
   app.get("/api/warranty/", getAllWarranties);
 
   app.listen(ProcessEnv.BACKEND_PORT, () => {
-    console.log(`Server started at port: ${ProcessEnv.BACKEND_PORT}`);
+    console.log(`Server listening to :${ProcessEnv.BACKEND_PORT}`);
   });
 };
 
