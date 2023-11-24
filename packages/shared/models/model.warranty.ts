@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
-export class User {
+export class Warranty {
   @PrimaryGeneratedColumn("increment")
   id: number;
 
@@ -11,4 +11,11 @@ export class User {
   @Column() createdAt: Date;
   @Column() updatedAt: Date;
   @Column() note: string;
+}
+
+export interface IWarranty {
+  productName: string;
+  effectiveDate: Date;
+  expireDate: Date;
+  note: string;
 }
