@@ -11,6 +11,10 @@ importers:
       server:
         specifier: ^1.0.38
         version: 1.0.38
+    devDependencies:
+      typescript:
+        specifier: ^5.3.2
+        version: 5.3.2
 
   packages/client:
     dependencies:
@@ -61,6 +65,12 @@ importers:
       typescript:
         specifier: ^5.2.2
         version: 5.3.2
+
+  packages/shared:
+    dependencies:
+      typeorm:
+        specifier: ^0.3.17
+        version: 0.3.17(pg@8.11.3)(ts-node@10.9.1)
 
 packages:
 

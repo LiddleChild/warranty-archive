@@ -6,6 +6,7 @@
   "scripts": {
     "client": "pnpm --filter client",
     "server": "pnpm --filter server",
+    "shared": "pnpm --filter shared",
     "dev": "pnpm --recursive --parallel --stream run dev"
   },
   "keywords": [],
@@ -13,5 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "server": "^1.0.38"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.2"
   }
 }

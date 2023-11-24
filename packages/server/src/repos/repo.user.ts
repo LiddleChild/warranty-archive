@@ -1,5 +1,5 @@
 import { DataSource, Repository } from "typeorm";
-import { User } from "../models/model.user";
+import { User } from "../../../shared/models/model.user";
 
 export class UserRepository {
   private ds: DataSource;
