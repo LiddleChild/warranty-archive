@@ -1,5 +1,4 @@
 import { DataSource } from "typeorm";
-import { User } from "../../../shared/models/model.user";
 import { Warranty } from "../../../shared/models/model.warranty";
 
 export const PostgresDataSource = new DataSource({
@@ -11,7 +10,7 @@ export const PostgresDataSource = new DataSource({
   database: process.env.DB_DATABASE,
   synchronize: true,
   logging: false,
-  entities: [User, Warranty],
+  entities: [Warranty],
   subscribers: [],
   migrations: [],
 });
