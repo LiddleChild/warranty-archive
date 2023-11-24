@@ -1,9 +1,5 @@
-import path from "path";
-import dotenv from "dotenv";
-dotenv.config({ path: path.join(__dirname, "../../../.env") });
-
+import { ProcessEnv } from "./utils/util.env";
 import express from "express";
-
 import { postgresDataSource } from "./databases/db.postgres";
 import { WarrantyRepository } from "./repos/repo.warranty";
 import { getAllWarranties } from "./controller/controller.api";
@@ -18,10 +14,8 @@ const main = async () => {
 
   app.get("/api/warranty/", getAllWarranties);
 
-  app.listen(parseInt(process.env.BACKEND_PORT || "5556"), () => {
-    console.log(
-      `Server started at port: ${process.env.BACKEND_PORT || "5556"}`
-    );
+  app.listen(ProcessEnv.BACKEND_PORT, () => {
+    console.log(`Server started at port: ${ProcessEnv.BACKEND_PORT}`);
   });
 };
 
