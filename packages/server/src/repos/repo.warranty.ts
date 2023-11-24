@@ -2,9 +2,19 @@ import { DataSource, Repository } from "typeorm";
 import { IWarranty, Warranty } from "../../../shared/models/model.warranty";
 
 export class WarrantyRepository {
+  // Singleton pattern
+  private constructor() {}
+
+  private static instance: WarrantyRepository;
+
+  public static getInstance() {
+    if (!this.instance) this.instance = new WarrantyRepository();
+    return this.instance;
+  }
+
   private repo: Repository<Warranty>;
 
-  constructor(ds: DataSource) {
+  public initialize(ds: DataSource) {
     this.repo = ds.getRepository(Warranty);
   }
 

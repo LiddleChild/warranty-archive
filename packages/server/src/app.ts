@@ -2,14 +2,27 @@ import path from "path";
 import dotenv from "dotenv";
 dotenv.config({ path: path.join(__dirname, "../../../.env") });
 
-import { PostgresDataSource } from "./databases/db.postgres";
+import express from "express";
+
+import { postgresDataSource } from "./databases/db.postgres";
 import { WarrantyRepository } from "./repos/repo.warranty";
+import { getAllWarranties } from "./controller/controller.api";
 
 const main = async () => {
-  await PostgresDataSource.initialize();
+  await postgresDataSource.initialize();
+  WarrantyRepository.getInstance().initialize(postgresDataSource);
 
-  const warrantyRepo = new WarrantyRepository(PostgresDataSource);
-  warrantyRepo.getAllWarranties().then((data) => console.log(data));
+  const app = express();
+
+  app.use(express.json());
+
+  app.get("/api/warranty/", getAllWarranties);
+
+  app.listen(parseInt(process.env.BACKEND_PORT || "5556"), () => {
+    console.log(
+      `Server started at port: ${process.env.BACKEND_PORT || "5556"}`
+    );
+  });
 };
 
 main();

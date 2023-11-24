@@ -11,6 +11,17 @@ export class Warranty {
   @Column() createdAt: Date;
   @Column() updatedAt: Date;
   @Column() note: string;
+
+  public toObject(): Object {
+    return {
+      productName: this.productName,
+      effectiveDate: this.effectiveDate,
+      expireDate: this.expireDate,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+      note: this.note,
+    };
+  }
 }
 
 export interface IWarranty {
