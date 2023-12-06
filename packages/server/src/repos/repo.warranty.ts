@@ -1,5 +1,6 @@
 import { DataSource, Repository } from "typeorm";
-import { IWarranty, Warranty } from "../../../shared/models/model.warranty";
+import { Warranty } from "../models/model.warranty";
+import { IWarranty } from "../../../shared/models/model.warranty";
 
 export class WarrantyRepository {
   // Singleton pattern

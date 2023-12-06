@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm";
-import { Warranty } from "../../../shared/models/model.warranty";
+import { Warranty } from "../models/model.warranty";
 import { ProcessEnv } from "../utils/util.env";
 
 export const postgresDataSource = new DataSource({

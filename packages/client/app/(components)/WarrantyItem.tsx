@@ -1,5 +1,5 @@
 import { getFormattedDate } from "@/utils/util.date";
-import { Warranty } from "../../../shared/models/model.warranty";
+import { IWarranty } from "../../../shared/models/model.warranty";
 
 const CustomTd = ({
   children,
@@ -12,7 +12,7 @@ const CustomTd = ({
 };
 
 type WarrantyItemProps = {
-  warranty: Warranty;
+  warranty: IWarranty;
 };
 
 export const WarrantyItem = ({ warranty }: WarrantyItemProps) => {
