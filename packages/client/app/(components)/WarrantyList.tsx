@@ -1,13 +1,18 @@
-import { Warranty } from "../../../shared/models/model.warranty";
+import { getAllWarranties } from "@/services/service.warranty";
 import { WarrantyItem } from "./WarrantyItem";
+import { WarrantyHeader } from "./WarrantyHeader";
 
-export const WarrantyList = () => {
-  const warranty = [{}] as Warranty[];
+export const WarrantyList = async () => {
+  const warranties = await getAllWarranties();
+
   return (
-    <div>
-      {warranty.map((val, i) => (
-        <WarrantyItem key={i} warranty={val} />
-      ))}
-    </div>
+    <table className="w-full text-left border-collapse">
+      <WarrantyHeader />
+      <tbody>
+        {warranties.map((val, i) => (
+          <WarrantyItem key={i} warranty={val} />
+        ))}
+      </tbody>
+    </table>
   );
 };

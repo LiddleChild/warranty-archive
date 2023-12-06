@@ -5,7 +5,9 @@ export default function Home() {
   return (
     <div>
       <TitleBar />
-      <WarrantyList />
+      <div className="justify-center">
+        <WarrantyList />
+      </div>
     </div>
   );
 }
