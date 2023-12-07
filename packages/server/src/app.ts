@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
 import { ProcessEnv } from "./utils/util.env";
 import { postgresDataSource } from "./databases/db.postgres";
 import { WarrantyRepository } from "./repos/repo.warranty";
@@ -14,6 +15,7 @@ const main = async () => {
   const app = express();
   app.use(cors());
   app.use(express.json());
+  app.use("/", express.static(path.join(__dirname, "../../client/dist")));
 
   app.get("/api/warranty/", getAllWarranties);
 
