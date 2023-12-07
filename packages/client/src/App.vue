@@ -1,9 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import HeaderView from "./components/HeaderView.vue";
+import WarrantyTable from "./components/WarrantyTable.vue";
+</script>
 
 <template>
-  <div
-    class="flex justify-center items-center w-screen h-screen bg-red-500 font-semibold text-white text-xl"
-  >
-    Hello, World from Vite + Vue + Tailwindcss
+  <div class="w-screen h-screen bg-c-white">
+    <HeaderView />
+    <WarrantyTable />
   </div>
 </template>
