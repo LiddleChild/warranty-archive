@@ -1,8 +1,8 @@
-import { ProcessEnv } from "./utils/util.env";
 import express from "express";
+import cors from "cors";
+import { ProcessEnv } from "./utils/util.env";
 import { postgresDataSource } from "./databases/db.postgres";
 import { WarrantyRepository } from "./repos/repo.warranty";
-import cors from "cors";
 import { getAllWarranties } from "./controller/controller.api";
 
 const main = async () => {

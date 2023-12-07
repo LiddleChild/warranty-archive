@@ -23,3 +23,10 @@ export class Warranty {
     };
   }
 }
+
+export type WarrantyType = {
+  productName: string;
+  effectiveDate: Date;
+  expireDate: Date;
+  note: string;
+};

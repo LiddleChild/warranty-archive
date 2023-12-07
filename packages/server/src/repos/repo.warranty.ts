@@ -1,6 +1,5 @@
 import { DataSource, Repository } from "typeorm";
-import { Warranty } from "../models/model.warranty";
-import { IWarranty } from "@models/warranty";
+import { Warranty, WarrantyType } from "../models/model.warranty";
 
 export class WarrantyRepository {
   // Singleton pattern
@@ -23,7 +22,7 @@ export class WarrantyRepository {
     return this.repo.find();
   }
 
-  public createWarranty(w: IWarranty): Promise<Warranty> {
+  public createWarranty(w: WarrantyType): Promise<Warranty> {
     const wm = new Warranty();
     wm.productName = w.productName;
     wm.effectiveDate = w.effectiveDate;
