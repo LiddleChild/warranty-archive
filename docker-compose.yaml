@@ -11,10 +11,8 @@ services:
       - DB_PASSWORD=postgresdbpassword
       - DB_DATABASE=postgres_db
       - BACKEND_PORT=6544
-      - NEXT_PUBLIC_BACKEND_PORT=6544
 
     ports:
-      - 3000:3000
       - 6544:6544
 
     build: .

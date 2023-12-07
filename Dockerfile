@@ -25,16 +25,14 @@ WORKDIR /app
 COPY --from=builder /app/packages/client/dist ./packages/client/dist
 COPY --from=builder /app/packages/server/dist ./packages/server/dist
 COPY --from=builder /app/packages/server/node_modules ./packages/server/node_modules
+COPY --from=builder /app/node_modules ./node_modules
 
 # env var
 ENV DB_HOST=192.168.1.99
 ENV DB_PORT=6543
 
-ENV BACKEND_HOST=192.168.1.99
 ENV BACKEND_PORT=6544
-ENV NEXT_PUBLIC_BACKEND_PORT=6544
 
 EXPOSE 6544
-EXPOSE 3000
 
 CMD ["node", "packages/server/dist/app.js"]
