@@ -4,7 +4,7 @@ import { env } from "@/utils/util.env";
 
 export const getAllWarranties = async (): Promise<IWarranty[]> => {
   try {
-    const url = `http://localhost:6544/api/warranty`;
+    const url = `http://192.168.1.99:6544/api/warranty`;
     const data = await axios.get(url);
 
     return Promise.resolve(data.data as IWarranty[]);
