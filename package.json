@@ -8,7 +8,7 @@
     "server": "pnpm --filter server",
     "shared": "pnpm --filter shared",
     "dev": "pnpm --recursive --parallel --stream run dev",
-    "start": "pnpm --recursive --parallel --stream run start",
+    "start": "pnpm --filter server start",
     "build": "pnpm --recursive run build"
   },
   "keywords": [],
