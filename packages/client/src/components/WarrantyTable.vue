@@ -32,7 +32,7 @@ export default {
       <th class="uppercase">Product Name</th>
       <th class="uppercase">Effective Date</th>
       <th class="uppercase">Expire Date</th>
-      <th></th>
+      <th class="uppercase">Note</th>
     </thead>
     <tbody>
       <WarrantyItem v-for="item in warranties" :warranty="item" />
