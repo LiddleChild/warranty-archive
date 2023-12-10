@@ -14,6 +14,7 @@ export class Warranty {
 
   public toObject(): Object {
     return {
+      productId: this.id,
       productName: this.productName,
       effectiveDate: this.effectiveDate,
       expireDate: this.expireDate,

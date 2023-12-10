@@ -10,6 +10,7 @@ export default {
     };
   },
   methods: {
+    getFormattedDate,
     async fetchApi() {
       fetch("http://localhost:6544/api/warranty")
         .then((res) => res.json())
@@ -17,7 +18,6 @@ export default {
           this.warranties = json;
         });
     },
-    getFormattedDate,
   },
   mounted() {
     this.fetchApi();
@@ -32,6 +32,7 @@ export default {
       <th class="uppercase">Product Name</th>
       <th class="uppercase">Effective Date</th>
       <th class="uppercase">Expire Date</th>
+      <th></th>
     </thead>
     <tbody>
       <WarrantyItem v-for="item in warranties" :warranty="item" />
