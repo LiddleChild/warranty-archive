@@ -21,7 +21,7 @@ export default {
       fetch(url)
         .then((res) => res.json())
         .then((json) => {
-          this.warranties = json.concat(json).concat(json).concat(json);
+          this.warranties = json;
         });
     },
     setSortingState(id: string) {
