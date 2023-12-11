@@ -1,5 +1,7 @@
-import { DataSource, Repository } from "typeorm";
+import { DataSource, Repository, FindManyOptions, ILike } from "typeorm";
 import { Warranty, WarrantyType } from "../models/model.warranty";
+import { SearchParam } from "../models/model.search";
+import { QueryResult } from "typeorm/browser";
 
 export class WarrantyRepository {
   // Singleton pattern
@@ -18,8 +20,23 @@ export class WarrantyRepository {
     this.repo = ds.getRepository(Warranty);
   }
 
-  public getAllWarranties(): Promise<Warranty[]> {
-    return this.repo.find();
+  public getAllWarranties(searchParam: SearchParam): Promise<Warranty[]> {
+    const { search, sort } = searchParam;
+    const direction = searchParam.asc === "true" ? "ASC" : "DESC";
+
+    console.log(searchParam);
+
+    let query = this.repo.createQueryBuilder("w");
+
+    if (search) {
+      query.where("w.productName LIKE :search", { search: `%${search}%` });
+    }
+
+    if (sort) {
+      query.orderBy(`w.${sort}`, direction);
+    }
+
+    return query.getMany();
   }
 
   public createWarranty(w: WarrantyType): Promise<Warranty> {
