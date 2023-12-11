@@ -27,7 +27,7 @@ const focusSearchField = () => {
       type="text"
       ref="inputRef"
       placeholder="Search product name or note"
-      class="bg-transparent w-full focus:outline-none placeholder:text-sm placeholder:text-gray-400"
+      class="bg-transparent w-full focus:outline-none placeholder:text-sm text-sm placeholder:text-gray-400"
     />
   </div>
 </template>
