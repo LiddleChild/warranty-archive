@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Warranty } from "../models/model.warranty";
+import { Warranty } from "../../models/model.warranty";
 import WarrantyItem from "./WarrantyItem.vue";
 
 export default {

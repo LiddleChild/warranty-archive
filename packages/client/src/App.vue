@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import HeaderView from "./components/HeaderView.vue";
-import WarrantyTable from "./components/WarrantyTable.vue";
+import WarrantyTable from "./components/table/WarrantyTable.vue";
 </script>
 
 <template>

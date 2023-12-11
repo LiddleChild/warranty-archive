@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Warranty } from "../models/model.warranty";
-import { getFormattedDate } from "../utils/util.date";
-import ColorDate from "./ColorDate.vue";
+import { Warranty } from "../../models/model.warranty";
+import { getFormattedDate } from "../../utils/util.date";
+import ColorDate from "../ColorDate.vue";
 
 const { warranty } = defineProps<{
   warranty: Warranty;
