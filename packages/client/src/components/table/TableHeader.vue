@@ -8,8 +8,7 @@ const { id, sortingState, setSortingState } = defineProps<{
 }>();
 
 const handler = () => {
-  if (sortingState.id === id) sortingState.asc = !sortingState.asc;
-  else setSortingState(id);
+  setSortingState(id);
 };
 </script>
 
