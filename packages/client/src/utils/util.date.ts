@@ -8,3 +8,7 @@ export const getFormattedDate = (
     year: "numeric",
   });
 };
+
+export const isPassed = (date: string) => {
+  return new Date(date) < new Date(Date.now());
+};

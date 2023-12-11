@@ -4,8 +4,12 @@ import WarrantyTable from "./components/WarrantyTable.vue";
 </script>
 
 <template>
-  <div class="w-screen h-screen bg-c-white">
+  <div
+    class="w-screen h-screen bg-c-white overflow-x-hidden overflow-y-hidden flex flex-col"
+  >
     <HeaderView />
-    <WarrantyTable />
+    <div class="h-full px-4 overflow-y-scroll">
+      <WarrantyTable />
+    </div>
   </div>
 </template>
