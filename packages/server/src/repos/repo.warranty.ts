@@ -24,8 +24,6 @@ export class WarrantyRepository {
     const { search, sort } = searchParam;
     const direction = searchParam.asc === "true" ? "ASC" : "DESC";
 
-    console.log(searchParam);
-
     let query = this.repo.createQueryBuilder("w");
 
     if (search) {
@@ -33,7 +31,8 @@ export class WarrantyRepository {
     }
 
     if (sort) {
-      query.orderBy(`w.${sort}`, direction);
+      let orderBy = sort === "productName" ? `LOWER(w.${sort})` : `w.${sort}`;
+      query.orderBy(orderBy, direction);
     }
 
     return query.getMany();
