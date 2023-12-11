@@ -12,6 +12,6 @@ const { warranty } = defineProps<{
     <td class="align-top">{{ warranty.productName }}</td>
     <td class="align-top">{{ getFormattedDate(warranty.effectiveDate) }}</td>
     <td class="align-top">{{ getFormattedDate(warranty.expireDate) }}</td>
-    <td class="align-top break-words">{{ warranty.note }}</td>
+    <td class="align-top break-words min-w-min w-1/2">{{ warranty.note }}</td>
   </tr>
 </template>

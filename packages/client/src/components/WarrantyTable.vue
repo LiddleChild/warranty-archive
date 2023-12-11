@@ -27,8 +27,8 @@ export default {
 </script>
 
 <template>
-  <table>
-    <thead>
+  <table class="w-full">
+    <thead class="text-left">
       <th class="uppercase">Product Name</th>
       <th class="uppercase">Effective Date</th>
       <th class="uppercase">Expire Date</th>
