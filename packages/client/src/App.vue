@@ -58,7 +58,7 @@ export default {
     <div class="p-4 flex items-center gap-4">
       <Logo />
       <SearchField @value="setSearchValue" />
-      <Create />
+      <Create @onClick="" />
     </div>
     <div v-if="warranties.length > 0" class="h-full px-4 overflow-y-scroll">
       <WarrantyTable

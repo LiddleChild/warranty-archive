@@ -1,6 +1,16 @@
+<script lang="ts">
+export default {
+  methods: {
+    onClick() {
+      this.$emit("onClick");
+    },
+  },
+};
+</script>
+
 <template>
   <button
-    v-on:click="console.log('creating...')"
+    @click="onClick"
     class="bg-white rounded-full border-white broder-2 h-11 hover:bg-gray-200"
   >
     <div class="flex items-center gap-1 p-2">
