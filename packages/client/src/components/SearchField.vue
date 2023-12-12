@@ -1,11 +1,24 @@
-<script lang="ts" setup>
+<script lang="ts">
 import { ref } from "vue";
 
-let focusState = ref<boolean>(false);
-let inputRef = ref<HTMLInputElement>();
+export default {
+  setup() {
+    const inputRef = ref<HTMLInputElement>();
+    const focusState = ref<boolean>(false);
 
-const focusSearchField = () => {
-  if (inputRef.value) inputRef.value.focus();
+    return {
+      inputRef,
+      focusState,
+    };
+  },
+  methods: {
+    focusSearchField() {
+      if (this.inputRef) this.inputRef.focus();
+    },
+    onInput() {
+      if (this.inputRef) this.$emit("value", this.inputRef.value);
+    },
+  },
 };
 </script>
 
@@ -24,6 +37,7 @@ const focusSearchField = () => {
     <input
       @focus="focusState = true"
       @blur="focusState = false"
+      @input="onInput"
       type="text"
       ref="inputRef"
       placeholder="Search product name or note"
