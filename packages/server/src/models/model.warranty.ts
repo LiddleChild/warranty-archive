@@ -5,12 +5,12 @@ export class Warranty {
   @PrimaryGeneratedColumn("increment")
   id: number;
 
-  @Column() productName: string;
-  @Column() effectiveDate: Date;
-  @Column() expireDate: Date;
-  @Column() createdAt: Date;
-  @Column() updatedAt: Date;
-  @Column() note: string;
+  @Column({ type: "varchar" }) productName: string;
+  @Column({ type: "timestamp" }) effectiveDate: Date;
+  @Column({ type: "timestamp" }) expireDate: Date;
+  @Column({ type: "timestamp" }) createdAt: Date;
+  @Column({ type: "timestamp" }) updatedAt: Date;
+  @Column({ type: "varchar" }) note: string;
 
   public toObject(): Object {
     return {

@@ -47,9 +47,9 @@ export class WarrantyRepository {
     wm.expireDate = w.expireDate;
     wm.note = w.note;
 
-    const now = Date.now();
-    wm.createdAt = new Date(now);
-    wm.updatedAt = new Date(now);
+    const now = new Date(Date.now());
+    wm.createdAt = now;
+    wm.updatedAt = now;
 
     return this.repo.save(wm);
   }
