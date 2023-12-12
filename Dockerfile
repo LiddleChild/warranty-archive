@@ -33,6 +33,8 @@ ENV DB_PORT=6543
 
 ENV BACKEND_PORT=6544
 
+ENV NODE_ENV=production
+
 EXPOSE 6544
 
 CMD ["node", "packages/server/dist/app.js"]
