@@ -2,7 +2,8 @@
 import { ref } from "vue";
 
 import WarrantyTable from "./components/table/WarrantyTable.vue";
-import Create from "./components/Create.vue";
+import Add from "./components/Add.vue";
+import Modal from "./components/Modal.vue";
 import Logo from "./components/Logo.vue";
 import SearchField from "./components/SearchField.vue";
 import { getAllWarranty } from "./services/service.warranty";
@@ -10,7 +11,7 @@ import { SortingState } from "./models/model.sorting";
 import { Warranty } from "./models/model.warranty";
 
 export default {
-  components: { Logo, SearchField, Create, WarrantyTable },
+  components: { Logo, SearchField, Add, WarrantyTable, Modal },
   methods: {
     updateAllWarranty() {
       getAllWarranty(
@@ -39,10 +40,12 @@ export default {
     let searchValue = ref<string>("");
     let sortingState = ref<SortingState>({ id: "expireDate", asc: false });
     let warranties = ref<Warranty[]>([]);
+    let showModal = ref<boolean>(false);
     return {
       warranties,
       searchValue,
       sortingState,
+      showModal,
     };
   },
   mounted() {
@@ -52,13 +55,17 @@ export default {
 </script>
 
 <template>
+  <Modal v-if="showModal" @onClose="showModal = false">
+    <template v-slot:title>Add warranty</template>
+    <template v-slot:content></template>
+  </Modal>
   <div
     class="w-screen h-screen bg-c-white overflow-x-hidden overflow-y-hidden flex flex-col"
   >
     <div class="p-4 flex items-center gap-4">
       <Logo />
       <SearchField @value="setSearchValue" />
-      <Create @onClick="" />
+      <Add @onClick="showModal = true" />
     </div>
     <div v-if="warranties.length > 0" class="h-full px-4 overflow-y-scroll">
       <WarrantyTable

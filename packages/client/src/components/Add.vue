@@ -19,7 +19,7 @@ export default {
       >
         add
       </div>
-      <span>Create</span>
+      <span>Add</span>
     </div>
   </button>
 </template>
