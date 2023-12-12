@@ -60,12 +60,15 @@ export default {
       <SearchField @value="setSearchValue" />
       <Create />
     </div>
-    <div class="h-full px-4 overflow-y-scroll">
+    <div v-if="warranties.length > 0" class="h-full px-4 overflow-y-scroll">
       <WarrantyTable
         :warranties="warranties"
         :sorting-state="sortingState"
         :set-sorting-state="setSortingState"
       />
+    </div>
+    <div v-else class="flex justify-center items-center h-full text-lg">
+      Could not find the specify data.
     </div>
   </div>
 </template>
