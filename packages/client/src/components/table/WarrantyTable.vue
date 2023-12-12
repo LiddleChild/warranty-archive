@@ -1,45 +1,14 @@
-<script lang="ts">
+<script setup lang="ts">
+import { SortingState } from "../../models/model.sorting";
 import { Warranty } from "../../models/model.warranty";
-import { build } from "../../utils/util.query";
 import TableHeader from "./TableHeader.vue";
 import WarrantyItem from "./WarrantyItem.vue";
 
-export default {
-  data() {
-    return {
-      warranties: [] as Warranty[],
-      sortingState: { id: "expireDate", asc: false },
-    };
-  },
-  methods: {
-    async fetch() {
-      const url = `http://localhost:6544/api/warranty?${build({
-        search: "",
-        sort: this.sortingState.id,
-        asc: String(this.sortingState.asc),
-      })}`;
-      fetch(url)
-        .then((res) => res.json())
-        .then((json) => {
-          this.warranties = json;
-        });
-    },
-    setSortingState(id: string) {
-      if (this.sortingState.id === id) {
-        this.sortingState.asc = !this.sortingState.asc;
-      } else {
-        this.sortingState.id = id;
-        this.sortingState.asc = true;
-      }
-
-      this.fetch();
-    },
-  },
-  mounted() {
-    this.fetch();
-  },
-  components: { WarrantyItem, TableHeader },
-};
+const { warranties, sortingState, setSortingState } = defineProps<{
+  warranties: Warranty[];
+  sortingState: SortingState;
+  setSortingState: (id: string) => void;
+}>();
 </script>
 
 <template>

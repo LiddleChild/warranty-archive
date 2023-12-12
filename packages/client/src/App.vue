@@ -1,12 +1,54 @@
-<script setup lang="ts">
+<script lang="ts">
 import { ref } from "vue";
 
 import WarrantyTable from "./components/table/WarrantyTable.vue";
 import Create from "./components/Create.vue";
 import Logo from "./components/Logo.vue";
 import SearchField from "./components/SearchField.vue";
+import { getAllWarranty } from "./services/service.warranty";
+import { SortingState } from "./models/model.sorting";
+import { Warranty } from "./models/model.warranty";
 
-let searchValue = ref<string>("");
+export default {
+  components: { Logo, SearchField, Create, WarrantyTable },
+  methods: {
+    updateAllWarranty() {
+      getAllWarranty(
+        this.searchValue,
+        this.sortingState.id,
+        this.sortingState.asc
+      ).then((res) => (this.warranties = res));
+    },
+    setSortingState(id: string) {
+      if (this.sortingState.id === id) {
+        this.sortingState.asc = !this.sortingState.asc;
+      } else {
+        this.sortingState.id = id;
+        this.sortingState.asc = true;
+      }
+
+      this.updateAllWarranty();
+    },
+    setSearchValue(value: string) {
+      this.searchValue = value;
+
+      this.updateAllWarranty();
+    },
+  },
+  setup() {
+    let searchValue = ref<string>("");
+    let sortingState = ref<SortingState>({ id: "expireDate", asc: false });
+    let warranties = ref<Warranty[]>([]);
+    return {
+      warranties,
+      searchValue,
+      sortingState,
+    };
+  },
+  mounted() {
+    this.updateAllWarranty();
+  },
+};
 </script>
 
 <template>
@@ -15,11 +57,15 @@ let searchValue = ref<string>("");
   >
     <div class="p-4 flex items-center gap-4">
       <Logo />
-      <SearchField @value="(value: string) => searchValue = value" />
+      <SearchField @value="setSearchValue" />
       <Create />
     </div>
     <div class="h-full px-4 overflow-y-scroll">
-      <WarrantyTable />
+      <WarrantyTable
+        :warranties="warranties"
+        :sorting-state="sortingState"
+        :set-sorting-state="setSortingState"
+      />
     </div>
   </div>
 </template>
