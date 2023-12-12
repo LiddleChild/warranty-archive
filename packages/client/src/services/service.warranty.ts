@@ -7,10 +7,7 @@ export const getAllWarranty = async (
   sort: string,
   asc: boolean
 ): Promise<Warranty[]> => {
-  console.log(process.env.NODE_ENV);
-  console.log(env.BACKEND_HOST);
-
-  const url = `http://localhost:6544/api/warranty?${build({
+  const url = `http://${env.BACKEND_HOST}:6544/api/warranty?${build({
     search,
     sort,
     asc: String(asc),
