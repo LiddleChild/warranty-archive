@@ -27,7 +27,9 @@ export class WarrantyRepository {
     let query = this.repo.createQueryBuilder("w");
 
     if (search) {
-      query.where("w.productName LIKE :search", { search: `%${search}%` });
+      query.where("LOWER(w.productName) LIKE :search", {
+        search: `%${search.toLowerCase()}%`,
+      });
     }
 
     if (sort) {
