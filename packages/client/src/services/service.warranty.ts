@@ -16,11 +16,27 @@ export const getAllWarranty = async (
   try {
     let response = await fetch(url);
     let json = await response.json();
-
     return Promise.resolve(json);
   } catch (err) {
     console.log(err);
-
     return Promise.resolve([]);
+  }
+};
+
+export const createWarranty = async (warranty: Warranty): Promise<boolean> => {
+  const url = `http://${env.BACKEND_HOST}:6544/api/warranty`;
+
+  try {
+    let response = await fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(warranty),
+    });
+    return Promise.resolve(response.ok);
+  } catch (err) {
+    console.log(err);
+    return Promise.resolve(false);
   }
 };

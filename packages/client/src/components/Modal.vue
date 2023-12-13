@@ -17,13 +17,13 @@ export default {
   >
     <div
       @click="(e: Event) => e.stopPropagation()"
-      class="bg-c-white rounded-xl p-4 w-1/2 h-fit"
+      class="bg-c-white rounded-xl p-4 min-w-[512px] w-1/2 h-fit"
     >
       <div class="text-2xl flex justify-between items-center">
         <slot name="title">Title</slot>
         <button @click="onClose">
           <div
-            class="material-symbols-outlined text-xl text-gray-600 cursor-pointer select-none rounded-full w-7 h-7 flex items-center justify-center hover:bg-gray-300"
+            class="material-symbols-outlined text-xl text-gray-500 cursor-pointer select-none rounded-full w-7 h-7 flex items-center justify-center hover:bg-gray-300"
           >
             close
           </div>

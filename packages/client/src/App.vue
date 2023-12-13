@@ -5,13 +5,14 @@ import WarrantyTable from "./components/table/WarrantyTable.vue";
 import Add from "./components/Add.vue";
 import Modal from "./components/Modal.vue";
 import Logo from "./components/Logo.vue";
+import WarrantyForm from "./components/form/WarrantyForm.vue";
 import SearchField from "./components/SearchField.vue";
 import { getAllWarranty } from "./services/service.warranty";
 import { SortingState } from "./models/model.sorting";
 import { Warranty } from "./models/model.warranty";
 
 export default {
-  components: { Logo, SearchField, Add, WarrantyTable, Modal },
+  components: { Logo, SearchField, Add, WarrantyTable, Modal, WarrantyForm },
   methods: {
     updateAllWarranty() {
       getAllWarranty(
@@ -57,7 +58,14 @@ export default {
 <template>
   <Modal v-if="showModal" @onClose="showModal = false">
     <template v-slot:title>Add warranty</template>
-    <template v-slot:content></template>
+    <template v-slot:content>
+      <WarrantyForm
+        @done="
+          showModal = false;
+          updateAllWarranty();
+        "
+      />
+    </template>
   </Modal>
   <div
     class="w-screen h-screen bg-c-white overflow-x-hidden overflow-y-hidden flex flex-col"
