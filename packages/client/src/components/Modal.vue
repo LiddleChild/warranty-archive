@@ -4,7 +4,6 @@ export default {
     onClose(event: Event) {
       event.stopPropagation();
       this.$emit("onClose");
-      console.log("close");
     },
   },
 };
