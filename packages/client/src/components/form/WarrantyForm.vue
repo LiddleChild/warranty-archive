@@ -121,8 +121,3 @@ export default {
     </div>
   </form>
 </template>
-
-<!--
-  1. change expire date to duration and unit
-  2. finish update page
--->
