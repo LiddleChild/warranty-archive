@@ -1,19 +1,28 @@
 <script lang="ts">
 import { Warranty } from "../../models/model.warranty";
 import { createWarranty } from "../../services/service.warranty";
+import { getDate } from "../../utils/util.date";
 
 export default {
   props: ["warranty"],
   setup({ warranty }: { warranty: Warranty }) {
-    let productName = "";
+    let name = "";
     let effectiveDate = "";
     let duration = "";
     let durationUnit = "year";
     let note = "";
     let errorMessage = "";
 
+    if (!!warranty) {
+      name = warranty.name;
+      effectiveDate = getDate(warranty.effectiveDate);
+      duration = warranty.duration.toString();
+      durationUnit = warranty.durationUnit;
+      note = warranty.note;
+    }
+
     return {
-      productName,
+      name,
       effectiveDate,
       duration,
       durationUnit,
@@ -29,8 +38,8 @@ export default {
       const effectiveDate = new Date(parseInt(y), parseInt(m), parseInt(d));
 
       const warranty: Warranty = {
-        productId: "",
-        productName: this.productName,
+        id: "",
+        name: this.name,
         note: this.note,
         effectiveDate: new Date(effectiveDate).toString(),
         duration: parseInt(this.duration),
@@ -54,8 +63,8 @@ export default {
     <div class="flex flex-col">
       <label class="text-base text-gray-600">Product Name</label>
       <input
-        name="productName"
-        v-model="productName"
+        name="name"
+        v-model="name"
         type="text"
         class="focus:outline-none py-1 bg-transparent border-b hover:border-gray-500 focus:border-gray-500"
         required

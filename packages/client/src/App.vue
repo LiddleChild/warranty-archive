@@ -42,7 +42,7 @@ export default {
 
       this.warrantyFormDefault = !productId
         ? undefined
-        : this.warranties.find((e) => e.productId === productId);
+        : this.warranties.find((e) => e.id === productId);
     },
   },
   setup() {

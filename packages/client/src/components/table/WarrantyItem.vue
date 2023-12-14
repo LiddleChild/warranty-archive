@@ -45,7 +45,7 @@ const { warranty, showModal } = defineProps<{
       {{ warranty.note }}
     </td>
     <td>
-      <button @click="showModal(warranty.productId)">
+      <button @click="showModal(warranty.id)">
         <div
           class="material-symbols-outlined text-xl text-gray-700 cursor-pointer select-none rounded-full w-7 h-7 flex items-center justify-center hover:bg-gray-400"
         >

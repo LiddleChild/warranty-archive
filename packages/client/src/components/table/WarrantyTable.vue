@@ -43,7 +43,7 @@ const { warranties, sortingState, setSortingState, showModal } = defineProps<{
     <tbody>
       <WarrantyItem
         v-for="item in warranties"
-        :key="item.productId"
+        :key="item.id"
         :warranty="item"
         :showModal="showModal"
       />
