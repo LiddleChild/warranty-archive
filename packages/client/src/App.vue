@@ -36,17 +36,32 @@ export default {
 
       this.updateAllWarranty();
     },
+    showModal(productId?: string) {
+      this.isShowingModal = true;
+      this.modalTitle = !productId ? "Add warranty" : "Edit warranty";
+
+      this.warrantyFormDefault = !productId
+        ? undefined
+        : this.warranties.find((e) => e.productId === productId);
+    },
   },
   setup() {
     let searchValue = ref<string>("");
     let sortingState = ref<SortingState>({ id: "expireDate", asc: false });
+
     let warranties = ref<Warranty[]>([]);
-    let showModal = ref<boolean>(false);
+
+    let isShowingModal = ref<boolean>(false);
+    let modalTitle = ref<string>("");
+
+    let warrantyFormDefault = ref<Warranty | undefined>(undefined);
     return {
       warranties,
       searchValue,
       sortingState,
-      showModal,
+      isShowingModal,
+      modalTitle,
+      warrantyFormDefault,
     };
   },
   mounted() {
@@ -56,12 +71,13 @@ export default {
 </script>
 
 <template>
-  <Modal v-if="showModal" @onClose="showModal = false">
-    <template v-slot:title>Add warranty</template>
+  <Modal v-if="isShowingModal" @onClose="isShowingModal = false">
+    <template v-slot:title>{{ modalTitle }}</template>
     <template v-slot:content>
       <WarrantyForm
+        :warranty="warrantyFormDefault"
         @done="
-          showModal = false;
+          isShowingModal = false;
           updateAllWarranty();
         "
       />
@@ -73,13 +89,14 @@ export default {
     <div class="p-4 flex items-center gap-4">
       <Logo />
       <SearchField @value="setSearchValue" />
-      <Add @onClick="showModal = true" />
+      <Add @onClick="showModal(undefined)" />
     </div>
     <div v-if="warranties.length > 0" class="h-full px-4 overflow-y-scroll">
       <WarrantyTable
         :warranties="warranties"
         :sorting-state="sortingState"
         :set-sorting-state="setSortingState"
+        @onEdit="(id) => showModal(id)"
       />
     </div>
     <div v-else class="flex justify-center items-center h-full text-lg">

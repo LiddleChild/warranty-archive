@@ -3,14 +3,51 @@ import { Warranty } from "../../models/model.warranty";
 import { createWarranty } from "../../services/service.warranty";
 
 export default {
-  data() {
+  props: ["warranty"],
+  setup({ warranty }: { warranty: Warranty }) {
+    let productName = "";
+    let effectiveDate = "";
+    let duration = "";
+    let durationUnit = "year";
+    let note = "";
+    let errorMessage = "";
+
+    if (!!warranty) {
+      productName = warranty.productName;
+      effectiveDate = warranty.effectiveDate;
+      note = warranty.note;
+
+      let s = new Date(warranty.effectiveDate);
+      let e = new Date(warranty.expireDate);
+
+      let year = e.getFullYear() - s.getFullYear();
+      let month = year * 12;
+      let day = (e.getTime() - s.getTime()) / (1000 * 3600 * 24);
+      month -= s.getMonth();
+      month += e.getMonth();
+      month = month <= 0 ? 0 : month;
+
+      console.log(year, month, day);
+
+      if (month >= 12) {
+        duration = year.toString();
+        durationUnit = "year";
+      } else if (month > 0) {
+        duration = month.toString();
+        durationUnit = "month";
+      } else {
+        duration = day.toString();
+        durationUnit = "day";
+      }
+    }
+
     return {
-      productName: "",
-      effectiveDate: "",
-      duration: "",
-      durationUnit: "year",
-      note: "",
-      errorMessage: "",
+      productName,
+      effectiveDate,
+      duration,
+      durationUnit,
+      note,
+      errorMessage,
     };
   },
   methods: {
@@ -38,13 +75,16 @@ export default {
     onSubmit(event: Event) {
       event.preventDefault();
 
+      const [y, m, d] = this.effectiveDate.split("-");
+      const effectiveDate = new Date(parseInt(y), parseInt(m), parseInt(d));
+
       const warranty: Warranty = {
         productId: "",
         productName: this.productName,
         note: this.note,
-        effectiveDate: new Date(this.effectiveDate).toString(),
+        effectiveDate: new Date(effectiveDate).toString(),
         expireDate: this.getExpireDate(
-          new Date(this.effectiveDate),
+          new Date(effectiveDate),
           this.duration,
           this.durationUnit
         ),
@@ -59,7 +99,6 @@ export default {
       });
     },
   },
-  setup() {},
 };
 </script>
 
@@ -126,3 +165,8 @@ export default {
     </div>
   </form>
 </template>
+
+<!--
+  1. change expire date to duration and unit
+  2. finish update page
+-->
