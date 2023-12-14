@@ -33,8 +33,12 @@ export class WarrantyRepository {
     }
 
     if (sort) {
-      let orderBy = sort === "name" ? `LOWER(w.${sort})` : `w.${sort}`;
-      query.orderBy(orderBy, direction);
+      if (sort === "name") query.orderBy(`LOWER(w.${sort})`, direction);
+      else if (sort === "duration")
+        query
+          .orderBy("w.durationUnit", direction)
+          .addOrderBy("w.duration", direction);
+      else query.orderBy(`w.${sort}`, direction);
     }
 
     return query.getMany();
