@@ -20,5 +20,14 @@ const { warranty } = defineProps<{
     <td class="align-top break-words min-w-min w-1/2 py-2">
       {{ warranty.note }}
     </td>
+    <td>
+      <button>
+        <div
+          class="material-symbols-outlined text-xl text-gray-700 cursor-pointer select-none rounded-full w-7 h-7 flex items-center justify-center hover:bg-gray-400"
+        >
+          edit
+        </div>
+      </button>
+    </td>
   </tr>
 </template>
