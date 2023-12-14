@@ -2,6 +2,7 @@ import { DataSource, Repository, FindManyOptions, ILike } from "typeorm";
 import { Warranty, WarrantyType } from "../models/model.warranty";
 import { SearchParam } from "../models/model.search";
 import { QueryResult } from "typeorm/browser";
+import { UpdateResult } from "typeorm/browser";
 
 export class WarrantyRepository {
   // Singleton pattern
@@ -52,5 +53,15 @@ export class WarrantyRepository {
     wm.updatedAt = now;
 
     return this.repo.save(wm);
+  }
+
+  public async updateWarranty(
+    productId: number,
+    w: WarrantyType
+  ): Promise<UpdateResult> {
+    return this.repo.update(productId, {
+      updatedAt: new Date(Date.now()),
+      ...w,
+    });
   }
 }

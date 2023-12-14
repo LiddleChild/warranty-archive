@@ -4,7 +4,11 @@ import path from "path";
 import { ProcessEnv } from "./utils/util.env";
 import { postgresDataSource } from "./databases/db.postgres";
 import { WarrantyRepository } from "./repos/repo.warranty";
-import { createWarranty, getAllWarranties } from "./controller/controller.api";
+import {
+  createWarranty,
+  getAllWarranties,
+  updateWarranty,
+} from "./controller/controller.api";
 
 const main = async () => {
   await postgresDataSource.initialize();
@@ -19,6 +23,7 @@ const main = async () => {
 
   app.get("/api/warranty/", getAllWarranties);
   app.post("/api/warranty", createWarranty);
+  app.patch("/api/warranty", updateWarranty);
 
   app.listen(ProcessEnv.BACKEND_PORT, () => {
     console.log(`Server listening to :${ProcessEnv.BACKEND_PORT}`);

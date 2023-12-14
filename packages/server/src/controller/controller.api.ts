@@ -57,3 +57,35 @@ export const createWarranty = async (req: Request, res: Response) => {
 
   return res.status(201).json(body);
 };
+
+export const updateWarranty = async (req: Request, res: Response) => {
+  const body = req.body;
+  const productId = body.productId;
+
+  if (!productId) {
+    return res.status(400).json({ message: "Product id must be specified" });
+  }
+
+  if (!isDateFormat(body.effectiveDate) || !isDateFormat(body.expireDate))
+    return res
+      .status(400)
+      .json({ message: "The request date could not be parsed" });
+
+  const warranty: WarrantyType = {
+    productName: body.productName,
+    note: body.note,
+    effectiveDate: new Date(body.effectiveDate),
+    expireDate: new Date(body.expireDate),
+  };
+
+  try {
+    await WarrantyRepository.getInstance().updateWarranty(productId, warranty);
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(400)
+      .json({ message: "The request could not be updated" });
+  }
+
+  return res.status(202).json({ message: "Updated!" });
+};
