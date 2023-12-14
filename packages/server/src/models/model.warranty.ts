@@ -5,19 +5,21 @@ export class Warranty {
   @PrimaryGeneratedColumn("increment")
   id: number;
 
-  @Column({ type: "varchar" }) productName: string;
+  @Column({ type: "varchar" }) name: string;
   @Column({ type: "timestamp" }) effectiveDate: Date;
-  @Column({ type: "timestamp" }) expireDate: Date;
+  @Column({ type: "integer" }) duration: number;
+  @Column({ type: "varchar" }) durationUnit: string;
   @Column({ type: "timestamp" }) createdAt: Date;
   @Column({ type: "timestamp" }) updatedAt: Date;
   @Column({ type: "varchar" }) note: string;
 
   public toObject(): Object {
     return {
-      productId: this.id,
-      productName: this.productName,
+      id: this.id,
+      name: this.name,
       effectiveDate: this.effectiveDate,
-      expireDate: this.expireDate,
+      duration: this.duration,
+      durationUnit: this.durationUnit,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
       note: this.note,
@@ -26,8 +28,9 @@ export class Warranty {
 }
 
 export type WarrantyType = {
-  productName: string;
+  name: string;
   effectiveDate: Date;
-  expireDate: Date;
+  duration: number;
+  durationUnit: string;
   note: string;
 };

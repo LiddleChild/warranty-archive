@@ -29,21 +29,22 @@ export const getAllWarranties = async (req: Request, res: Response) => {
 export const createWarranty = async (req: Request, res: Response) => {
   const body = req.body;
 
-  if (!body.productName || body.productName.trim().length == 0)
+  if (!body.name || body.name.trim().length == 0)
     return res
       .status(400)
       .json({ message: "Product name could not be empty." });
 
-  if (!isDateFormat(body.effectiveDate) || !isDateFormat(body.expireDate))
+  if (!isDateFormat(body.effectiveDate))
     return res
       .status(400)
       .json({ message: "The request date could not be parsed" });
 
   const warranty: WarrantyType = {
-    productName: body.productName,
+    name: body.name,
     note: body.note,
     effectiveDate: new Date(body.effectiveDate),
-    expireDate: new Date(body.expireDate),
+    duration: body.duration,
+    durationUnit: body.durationUnit,
   };
 
   try {
@@ -65,19 +66,17 @@ export const updateWarranty = async (req: Request, res: Response) => {
   if (!productId)
     return res.status(400).json({ message: "Product id must be specified" });
 
-  if (
-    (body.effectiveDate && !isDateFormat(body.effectiveDate)) ||
-    (body.expireDate && !isDateFormat(body.expireDate))
-  )
+  if (body.effectiveDate && !isDateFormat(body.effectiveDate))
     return res
       .status(400)
       .json({ message: "The request date could not be parsed" });
 
   const warranty: WarrantyType = {
-    productName: body.productName,
+    name: body.name,
     note: body.note,
     effectiveDate: new Date(body.effectiveDate),
-    expireDate: new Date(body.expireDate),
+    duration: body.duration,
+    durationUnit: body.durationUnit,
   };
 
   try {

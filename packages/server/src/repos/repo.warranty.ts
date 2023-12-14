@@ -1,7 +1,6 @@
 import { DataSource, Repository, FindManyOptions, ILike } from "typeorm";
 import { Warranty, WarrantyType } from "../models/model.warranty";
 import { SearchParam } from "../models/model.search";
-import { QueryResult } from "typeorm/browser";
 import { UpdateResult } from "typeorm/browser";
 
 export class WarrantyRepository {
@@ -43,9 +42,10 @@ export class WarrantyRepository {
 
   public createWarranty(w: WarrantyType): Promise<Warranty> {
     const wm = new Warranty();
-    wm.productName = w.productName;
+    wm.name = w.name;
     wm.effectiveDate = w.effectiveDate;
-    wm.expireDate = w.expireDate;
+    wm.duration = w.duration;
+    wm.durationUnit = w.durationUnit;
     wm.note = w.note;
 
     const now = new Date(Date.now());
