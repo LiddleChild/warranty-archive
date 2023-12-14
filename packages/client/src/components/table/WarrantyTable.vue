@@ -1,29 +1,15 @@
-<script lang="ts">
+<script setup lang="ts">
 import { SortingState } from "../../models/model.sorting";
 import { Warranty } from "../../models/model.warranty";
 import TableHeader from "./TableHeader.vue";
 import WarrantyItem from "./WarrantyItem.vue";
 
-export default {
-  components: { TableHeader, WarrantyItem },
-  props: ["warranties", "sortingState", "setSortingState"],
-  setup({
-    warranties,
-    sortingState,
-    setSortingState,
-  }: {
-    warranties: Warranty[];
-    sortingState: SortingState;
-    setSortingState: (id: string) => void;
-  }) {
-    return { warranties, sortingState, setSortingState };
-  },
-  methods: {
-    onEdit(productId: string) {
-      this.$emit("onEdit", productId);
-    },
-  },
-};
+const { warranties, sortingState, setSortingState, showModal } = defineProps<{
+  warranties: Warranty[];
+  sortingState: SortingState;
+  setSortingState: (id: string) => void;
+  showModal: (productId?: string) => void;
+}>();
 </script>
 
 <template>
@@ -57,8 +43,9 @@ export default {
     <tbody>
       <WarrantyItem
         v-for="item in warranties"
+        :key="item.productId"
         :warranty="item"
-        @onEdit="onEdit"
+        :showModal="showModal"
       />
     </tbody>
   </table>

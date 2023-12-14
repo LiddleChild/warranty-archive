@@ -1,21 +1,12 @@
-<script lang="ts">
+<script setup lang="ts">
 import { Warranty } from "../../models/model.warranty";
 import { getFormattedDate } from "../../utils/util.date";
 import ColorDate from "../ColorDate.vue";
 
-export default {
-  components: { ColorDate },
-  methods: {
-    getFormattedDate,
-    onEdit() {
-      this.$emit("onEdit", this.warranty.productId);
-    },
-  },
-  props: ["warranty"],
-  setup({ warranty }: { warranty: Warranty }) {
-    return { warranty };
-  },
-};
+const { warranty, showModal } = defineProps<{
+  warranty: Warranty;
+  showModal: (productId?: string) => void;
+}>();
 </script>
 
 <template>
@@ -31,7 +22,7 @@ export default {
       {{ warranty.note }}
     </td>
     <td>
-      <button @click="onEdit">
+      <button @click="showModal(warranty.productId)">
         <div
           class="material-symbols-outlined text-xl text-gray-700 cursor-pointer select-none rounded-full w-7 h-7 flex items-center justify-center hover:bg-gray-400"
         >

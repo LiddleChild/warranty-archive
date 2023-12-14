@@ -96,7 +96,7 @@ export default {
         :warranties="warranties"
         :sorting-state="sortingState"
         :set-sorting-state="setSortingState"
-        @onEdit="(id) => showModal(id)"
+        :showModal="showModal"
       />
     </div>
     <div v-else class="flex justify-center items-center h-full text-lg">
