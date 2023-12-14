@@ -16,7 +16,7 @@ const { warranties, sortingState, setSortingState, showModal } = defineProps<{
   <table class="w-full">
     <thead class="text-left sticky top-0 bg-c-white">
       <TableHeader
-        :id="'productName'"
+        :id="'name'"
         :sorting-state="sortingState"
         :set-sorting-state="setSortingState"
         >Product Name</TableHeader
@@ -28,10 +28,10 @@ const { warranties, sortingState, setSortingState, showModal } = defineProps<{
         >Effective Date</TableHeader
       >
       <TableHeader
-        :id="'expireDate'"
+        :id="'duration'"
         :sorting-state="sortingState"
         :set-sorting-state="setSortingState"
-        >Expire Date</TableHeader
+        >Duration</TableHeader
       >
       <TableHeader
         :id="'note'"

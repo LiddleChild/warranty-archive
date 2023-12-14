@@ -12,35 +12,6 @@ export default {
     let note = "";
     let errorMessage = "";
 
-    if (!!warranty) {
-      productName = warranty.productName;
-      effectiveDate = warranty.effectiveDate;
-      note = warranty.note;
-
-      let s = new Date(warranty.effectiveDate);
-      let e = new Date(warranty.expireDate);
-
-      let year = e.getFullYear() - s.getFullYear();
-      let month = year * 12;
-      let day = (e.getTime() - s.getTime()) / (1000 * 3600 * 24);
-      month -= s.getMonth();
-      month += e.getMonth();
-      month = month <= 0 ? 0 : month;
-
-      console.log(year, month, day);
-
-      if (month >= 12) {
-        duration = year.toString();
-        durationUnit = "year";
-      } else if (month > 0) {
-        duration = month.toString();
-        durationUnit = "month";
-      } else {
-        duration = day.toString();
-        durationUnit = "day";
-      }
-    }
-
     return {
       productName,
       effectiveDate,
@@ -51,27 +22,6 @@ export default {
     };
   },
   methods: {
-    getExpireDate(effectiveDate: Date, duration: string, durationUnit: string) {
-      let year = effectiveDate.getFullYear();
-      let month = effectiveDate.getMonth();
-      let day = effectiveDate.getDate();
-
-      switch (durationUnit) {
-        case "day":
-          day += parseInt(duration);
-          break;
-
-        case "month":
-          month += parseInt(duration);
-          break;
-
-        case "year":
-          year += parseInt(duration);
-          break;
-      }
-
-      return new Date(year, month, day).toString();
-    },
     onSubmit(event: Event) {
       event.preventDefault();
 
@@ -83,11 +33,8 @@ export default {
         productName: this.productName,
         note: this.note,
         effectiveDate: new Date(effectiveDate).toString(),
-        expireDate: this.getExpireDate(
-          new Date(effectiveDate),
-          this.duration,
-          this.durationUnit
-        ),
+        duration: parseInt(this.duration),
+        durationUnit: this.durationUnit,
       };
 
       createWarranty(warranty).then((ok) => {

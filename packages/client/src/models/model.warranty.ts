@@ -1,7 +1,8 @@
 export type Warranty = {
-  productName: string;
+  name: string;
   productId: string;
   effectiveDate: string;
-  expireDate: string;
+  duration: number;
+  durationUnit: string;
   note: string;
 };
