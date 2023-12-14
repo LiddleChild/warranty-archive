@@ -1,4 +1,4 @@
-import { DataSource, Repository, FindManyOptions, ILike } from "typeorm";
+import { DataSource, Repository } from "typeorm";
 import { Warranty, WarrantyType } from "../models/model.warranty";
 import { SearchParam } from "../models/model.search";
 import { UpdateResult } from "typeorm/browser";
@@ -27,13 +27,13 @@ export class WarrantyRepository {
     let query = this.repo.createQueryBuilder("w");
 
     if (search) {
-      query.where("LOWER(w.productName) LIKE :search", {
+      query.where("LOWER(w.name) LIKE :search", {
         search: `%${search.toLowerCase()}%`,
       });
     }
 
     if (sort) {
-      let orderBy = sort === "productName" ? `LOWER(w.${sort})` : `w.${sort}`;
+      let orderBy = sort === "name" ? `LOWER(w.${sort})` : `w.${sort}`;
       query.orderBy(orderBy, direction);
     }
 
