@@ -1,15 +1,19 @@
 <script setup lang="ts">
+import { LanguageWord } from "../../lang/lang.app";
+import { LanguageOption } from "../../models/model.lang";
 import { SortingState } from "../../models/model.sorting";
 import { Warranty } from "../../models/model.warranty";
 import TableHeader from "./TableHeader.vue";
 import WarrantyItem from "./WarrantyItem.vue";
 
-const { warranties, sortingState, setSortingState, showModal } = defineProps<{
-  warranties: Warranty[];
-  sortingState: SortingState;
-  setSortingState: (id: string) => void;
-  showModal: (productId?: string) => void;
-}>();
+const { warranties, sortingState, setSortingState, showModal, lang } =
+  defineProps<{
+    warranties: Warranty[];
+    sortingState: SortingState;
+    setSortingState: (id: string) => void;
+    showModal: (productId?: string) => void;
+    lang: LanguageOption;
+  }>();
 </script>
 
 <template>
@@ -19,25 +23,25 @@ const { warranties, sortingState, setSortingState, showModal } = defineProps<{
         :id="'name'"
         :sorting-state="sortingState"
         :set-sorting-state="setSortingState"
-        >Product Name</TableHeader
+        >{{ LanguageWord[lang].content.productName }}</TableHeader
       >
       <TableHeader
         :id="'effectiveDate'"
         :sorting-state="sortingState"
         :set-sorting-state="setSortingState"
-        >Effective Date</TableHeader
+        >{{ LanguageWord[lang].content.effectiveDate }}</TableHeader
       >
       <TableHeader
         :id="'duration'"
         :sorting-state="sortingState"
         :set-sorting-state="setSortingState"
-        >Duration</TableHeader
+        >{{ LanguageWord[lang].content.duration }}</TableHeader
       >
       <TableHeader
         :id="'note'"
         :sorting-state="sortingState"
         :set-sorting-state="setSortingState"
-        >Note</TableHeader
+        >{{ LanguageWord[lang].content.note }}</TableHeader
       >
     </thead>
     <tbody>

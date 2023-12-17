@@ -118,6 +118,7 @@ export default {
     </div>
     <div v-if="warranties.length > 0" class="h-full px-4 overflow-y-scroll">
       <WarrantyTable
+        :lang="lang"
         :warranties="warranties"
         :sorting-state="sortingState"
         :set-sorting-state="setSortingState"

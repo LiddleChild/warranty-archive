@@ -7,4 +7,10 @@ export type WebStructureWord = {
     searchPlaceholder: string;
     addButton: string;
   };
+  content: {
+    productName: string;
+    effectiveDate: string;
+    duration: string;
+    note: string;
+  };
 };
