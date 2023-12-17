@@ -7,12 +7,22 @@ import Modal from "./components/Modal.vue";
 import Logo from "./components/Logo.vue";
 import WarrantyForm from "./components/form/WarrantyForm.vue";
 import SearchField from "./components/SearchField.vue";
+import Language from "./components/Language.vue";
+import { LanguageOption } from "./models/model.lang";
 import { getAllWarranty } from "./services/service.warranty";
 import { SortingState } from "./models/model.sorting";
 import { Warranty } from "./models/model.warranty";
 
 export default {
-  components: { Logo, SearchField, Add, WarrantyTable, Modal, WarrantyForm },
+  components: {
+    Logo,
+    SearchField,
+    Add,
+    WarrantyTable,
+    Modal,
+    WarrantyForm,
+    Language,
+  },
   methods: {
     updateAllWarranty() {
       getAllWarranty(
@@ -44,6 +54,10 @@ export default {
         ? undefined
         : this.warranties.find((e) => e.id === productId);
     },
+    toggleLanguage() {
+      this.lang = this.lang === "en" ? "th" : "en";
+      localStorage.setItem("lang", this.lang);
+    },
   },
   setup() {
     let searchValue = ref<string>("");
@@ -55,6 +69,15 @@ export default {
     let modalTitle = ref<string>("");
 
     let warrantyFormDefault = ref<Warranty | undefined>(undefined);
+
+    let defaultLang = localStorage.getItem("lang") as LanguageOption;
+    if (!defaultLang) {
+      defaultLang = "th";
+      localStorage.setItem("lang", defaultLang);
+    }
+
+    let lang = ref<LanguageOption>(defaultLang);
+
     return {
       warranties,
       searchValue,
@@ -62,6 +85,7 @@ export default {
       isShowingModal,
       modalTitle,
       warrantyFormDefault,
+      lang,
     };
   },
   mounted() {
@@ -90,6 +114,7 @@ export default {
       <Logo />
       <SearchField @value="setSearchValue" />
       <Add @onClick="showModal(undefined)" />
+      <Language :lang="lang" :toggle-language="toggleLanguage" />
     </div>
     <div v-if="warranties.length > 0" class="h-full px-4 overflow-y-scroll">
       <WarrantyTable
