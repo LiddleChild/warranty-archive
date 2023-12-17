@@ -11,7 +11,7 @@ const { lang, toggleLanguage } = defineProps<{
 <template>
   <button
     @click="toggleLanguage"
-    class="rounded-full w-fit h-11 hover:bg-gray-200 px-2"
+    class="rounded-full w-fit h-11 hover:bg-gray-200 px-2 focus:outline-none"
   >
     <div class="w-14 flex justify-between items-center gap-1">
       <div
