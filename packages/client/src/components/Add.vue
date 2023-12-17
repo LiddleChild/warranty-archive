@@ -1,11 +1,11 @@
-<script lang="ts">
-export default {
-  methods: {
-    onClick() {
-      this.$emit("onClick");
-    },
-  },
-};
+<script setup lang="ts">
+import { LanguageOption } from "../models/model.lang";
+import { LanguageWord } from "../lang/lang.app";
+
+const { lang, onClick } = defineProps<{
+  lang: LanguageOption;
+  onClick: () => void;
+}>();
 </script>
 
 <template>
@@ -19,7 +19,7 @@ export default {
       >
         add
       </div>
-      <span>Add</span>
+      <span>{{ LanguageWord[lang].header.addButton }}</span>
     </div>
   </button>
 </template>

@@ -111,9 +111,9 @@ export default {
     class="w-screen h-screen bg-c-white overflow-x-hidden overflow-y-hidden flex flex-col"
   >
     <div class="p-4 flex items-center gap-4">
-      <Logo />
-      <SearchField @value="setSearchValue" />
-      <Add @onClick="showModal(undefined)" />
+      <Logo :lang="lang" />
+      <SearchField :lang="lang" :setSearchValue="setSearchValue" />
+      <Add :lang="lang" :onClick="() => showModal(undefined)" />
       <Language :lang="lang" :toggle-language="toggleLanguage" />
     </div>
     <div v-if="warranties.length > 0" class="h-full px-4 overflow-y-scroll">
