@@ -3,6 +3,7 @@ import { LanguageOption, WebStructureWord } from "../models/model.lang";
 export const LanguageWord: { [key in LanguageOption]: WebStructureWord } = {
   th: {
     languageName: "ไทย",
+    dateFormat: "th-TH",
     header: {
       title: "ประกันสินค้า",
       searchPlaceholder: "ค้นหาด้วยชื่อสินค้า",
@@ -34,6 +35,7 @@ export const LanguageWord: { [key in LanguageOption]: WebStructureWord } = {
   },
   en: {
     languageName: "Eng",
+    dateFormat: "en-UK",
     header: {
       title: "Warranty",
       searchPlaceholder: "Search product name",

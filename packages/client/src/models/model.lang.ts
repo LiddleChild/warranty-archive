@@ -2,6 +2,7 @@ export type LanguageOption = "en" | "th";
 
 export type WebStructureWord = {
   languageName: string;
+  dateFormat: string;
   header: {
     title: string;
     searchPlaceholder: string;

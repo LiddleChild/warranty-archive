@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { LanguageWord } from "../../lang/lang.app";
+import { LanguageOption } from "../../models/model.lang";
 import { Warranty } from "../../models/model.warranty";
 import {
   getExpireDate,
@@ -6,7 +8,8 @@ import {
   isExpire,
 } from "../../utils/util.date";
 
-const { warranty, showModal } = defineProps<{
+const { lang, warranty, showModal } = defineProps<{
+  lang: LanguageOption;
   warranty: Warranty;
   showModal: (productId?: string) => void;
 }>();
@@ -16,7 +19,9 @@ const { warranty, showModal } = defineProps<{
   <tr class="hover:bg-gray-200 border-b border-t border-gray-300">
     <td class="align-top w-1/4 py-2">{{ warranty.name }}</td>
     <td class="align-top py-2">
-      {{ getFormattedDate(warranty.effectiveDate) }}
+      {{
+        getFormattedDate(warranty.effectiveDate, LanguageWord[lang].dateFormat)
+      }}
     </td>
     <td
       v-bind:class="`align-top py-2 ${
@@ -37,7 +42,8 @@ const { warranty, showModal } = defineProps<{
             warranty.effectiveDate,
             warranty.duration,
             warranty.durationUnit
-          ).toString()
+          ).toString(),
+          LanguageWord[lang].dateFormat
         )
       }}
     </td>

@@ -47,6 +47,7 @@ const { warranties, sortingState, setSortingState, showModal, lang } =
     <tbody>
       <WarrantyItem
         v-for="item in warranties"
+        :lang="lang"
         :key="item.id"
         :warranty="item"
         :showModal="showModal"
