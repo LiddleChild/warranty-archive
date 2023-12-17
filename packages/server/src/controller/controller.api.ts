@@ -60,7 +60,7 @@ export const createWarranty = async (req: Request, res: Response) => {
 };
 
 export const updateWarranty = async (req: Request, res: Response) => {
-  const productId = req.body.productId;
+  const productId = req.body.id;
   const body = req.body;
 
   if (!productId)
