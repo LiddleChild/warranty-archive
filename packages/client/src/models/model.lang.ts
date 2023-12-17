@@ -12,6 +12,7 @@ export type WebStructureWord = {
     effectiveDate: string;
     duration: string;
     note: string;
+    notFound: string;
   };
   form: {
     title: {

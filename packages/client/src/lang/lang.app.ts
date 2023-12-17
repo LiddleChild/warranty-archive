@@ -13,6 +13,7 @@ export const LanguageWord: { [key in LanguageOption]: WebStructureWord } = {
       effectiveDate: "วันเริ่มผลบังคับ",
       duration: "ระยะเวลา",
       note: "หมายเหตุ",
+      notFound: "ไม่พบข้อมูลที่ค้นหา",
     },
     form: {
       title: {
@@ -43,6 +44,7 @@ export const LanguageWord: { [key in LanguageOption]: WebStructureWord } = {
       effectiveDate: "Effective Date",
       duration: "Duration",
       note: "Note",
+      notFound: "Could not find the specify data.",
     },
     form: {
       title: {

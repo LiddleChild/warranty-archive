@@ -89,6 +89,7 @@ export default {
       modalTitle,
       warrantyFormDefault,
       lang,
+      LanguageWord,
     };
   },
   mounted() {
@@ -132,7 +133,7 @@ export default {
       />
     </div>
     <div v-else class="flex justify-center items-center h-full text-lg">
-      Could not find the specify data.
+      {{ LanguageWord[lang].content.notFound }}
     </div>
   </div>
 </template>
