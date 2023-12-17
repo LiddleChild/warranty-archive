@@ -2,15 +2,20 @@
 import { LanguageWord } from "../../lang/lang.app";
 import { LanguageOption } from "../../models/model.lang";
 import { Warranty } from "../../models/model.warranty";
-import { createWarranty } from "../../services/service.warranty";
+import {
+  createWarranty,
+  updateWarranty,
+} from "../../services/service.warranty";
 import { getDate } from "../../utils/util.date";
 
-const { lang, warranty, done } = defineProps<{
+const { lang, warranty, done, type } = defineProps<{
   lang: LanguageOption;
   warranty: Warranty | undefined;
   done: () => void;
+  type: string;
 }>();
 
+let id = "";
 let name = "";
 let effectiveDate = "";
 let duration = "";
@@ -19,6 +24,7 @@ let note = "";
 let errorMessage = "";
 
 if (!!warranty) {
+  id = warranty.id;
   name = warranty.name;
   effectiveDate = getDate(warranty.effectiveDate);
   duration = warranty.duration.toString();
@@ -26,33 +32,38 @@ if (!!warranty) {
   note = warranty.note;
 }
 
-const onSubmit = (event: Event) => {
+const onSubmitHandler = (event: Event) => {
   event.preventDefault();
 
   const [y, m, d] = effectiveDate.split("-");
   const defaultEffectiveDate = new Date(parseInt(y), parseInt(m), parseInt(d));
 
   const warranty: Warranty = {
-    id: "",
-    name: name,
-    note: note,
+    id,
+    name,
+    note,
     effectiveDate: new Date(defaultEffectiveDate).toString(),
     duration: parseInt(duration),
-    durationUnit: durationUnit,
+    durationUnit,
   };
 
-  createWarranty(warranty).then((ok) => {
+  const handler = (ok: boolean) => {
     if (ok) {
       done();
     } else {
       errorMessage = "Could not add warranty, please try again later.";
     }
-  });
+  };
+
+  console.log(type);
+
+  if (type === "create") createWarranty(warranty).then(handler);
+  else updateWarranty(warranty).then(handler);
 };
 </script>
 
 <template>
-  <form @submit="onSubmit" class="flex flex-col gap-6 pt-4">
+  <form @submit="onSubmitHandler" class="flex flex-col gap-6 pt-4">
     <div class="flex flex-col">
       <label class="text-base text-gray-600">{{
         LanguageWord[lang].form.productName

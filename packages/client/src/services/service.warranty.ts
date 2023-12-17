@@ -40,3 +40,21 @@ export const createWarranty = async (warranty: Warranty): Promise<boolean> => {
     return Promise.resolve(false);
   }
 };
+
+export const updateWarranty = async (warranty: Warranty): Promise<boolean> => {
+  const url = `http://${env.BACKEND_HOST}:6544/api/warranty`;
+
+  try {
+    let response = await fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "PATCH",
+      body: JSON.stringify(warranty),
+    });
+    return Promise.resolve(response.ok);
+  } catch (err) {
+    console.log(err);
+    return Promise.resolve(false);
+  }
+};

@@ -103,6 +103,7 @@ export default {
     <template v-slot:title>{{ modalTitle }}</template>
     <template v-slot:content>
       <WarrantyForm
+        :type="!warrantyFormDefault ? 'create' : 'edit'"
         :lang="lang"
         :warranty="warrantyFormDefault"
         :done="
