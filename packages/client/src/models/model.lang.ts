@@ -13,4 +13,20 @@ export type WebStructureWord = {
     duration: string;
     note: string;
   };
+  form: {
+    title: {
+      add: string;
+      edit: string;
+    };
+    productName: string;
+    effectiveDate: string;
+    warrantyDuration: string;
+    note: string;
+    doneButton: string;
+    dropdown: {
+      day: string;
+      month: string;
+      year: string;
+    };
+  };
 };

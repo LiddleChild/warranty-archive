@@ -12,6 +12,7 @@ import { LanguageOption } from "./models/model.lang";
 import { getAllWarranty } from "./services/service.warranty";
 import { SortingState } from "./models/model.sorting";
 import { Warranty } from "./models/model.warranty";
+import { LanguageWord } from "./lang/lang.app";
 
 export default {
   components: {
@@ -48,7 +49,9 @@ export default {
     },
     showModal(productId?: string) {
       this.isShowingModal = true;
-      this.modalTitle = !productId ? "Add warranty" : "Edit warranty";
+      this.modalTitle = !productId
+        ? LanguageWord[this.lang].form.title.add
+        : LanguageWord[this.lang].form.title.edit;
 
       this.warrantyFormDefault = !productId
         ? undefined
@@ -99,10 +102,13 @@ export default {
     <template v-slot:title>{{ modalTitle }}</template>
     <template v-slot:content>
       <WarrantyForm
+        :lang="lang"
         :warranty="warrantyFormDefault"
-        @done="
-          isShowingModal = false;
-          updateAllWarranty();
+        :done="
+          () => {
+            isShowingModal = false;
+            updateAllWarranty();
+          }
         "
       />
     </template>

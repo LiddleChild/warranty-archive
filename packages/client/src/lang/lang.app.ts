@@ -14,6 +14,22 @@ export const LanguageWord: { [key in LanguageOption]: WebStructureWord } = {
       duration: "ระยะเวลา",
       note: "หมายเหตุ",
     },
+    form: {
+      title: {
+        add: "เพิ่มประกันสินค้า",
+        edit: "แก้ไขประกันสินค้า",
+      },
+      productName: "ชื่อสินค้า",
+      effectiveDate: "วันเริ่มผลบังคับ",
+      warrantyDuration: "ระยะเวลา",
+      note: "หมายเหตุ",
+      doneButton: "เสร็จสิ้น",
+      dropdown: {
+        day: "วัน",
+        month: "เดือน",
+        year: "ปี",
+      },
+    },
   },
   en: {
     languageName: "Eng",
@@ -27,6 +43,22 @@ export const LanguageWord: { [key in LanguageOption]: WebStructureWord } = {
       effectiveDate: "Effective Date",
       duration: "Duration",
       note: "Note",
+    },
+    form: {
+      title: {
+        add: "Add warranty",
+        edit: "Edit warranty",
+      },
+      productName: "Product Name",
+      effectiveDate: "Effective Date",
+      warrantyDuration: "Warranty Duration",
+      note: "Note",
+      doneButton: "Done",
+      dropdown: {
+        day: "Day",
+        month: "Month",
+        year: "Year",
+      },
     },
   },
 };
