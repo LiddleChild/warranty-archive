@@ -46,7 +46,7 @@ const onSubmitHandler = (event: Event) => {
     id,
     name,
     note,
-    effectiveDate: new Date(defaultEffectiveDate).toString(),
+    effectiveDate: defaultEffectiveDate.toString(),
     duration: parseInt(duration),
     durationUnit,
   };
