@@ -48,7 +48,7 @@ export const getDurationFromNow = (
 
   let year = e.getFullYear() - s.getFullYear();
   let month = e.getMonth() - s.getMonth();
-  let day = Math.ceil((e.getTime() - s.getTime()) / (1000 * 3600 * 24));
+  let day = Math.floor((e.getTime() - s.getTime()) / (1000 * 3600 * 24));
 
   if (month < 0 && year > 0) {
     year -= 1;
@@ -56,6 +56,6 @@ export const getDurationFromNow = (
   }
 
   if (year > 0) return { value: year, unit: "year" };
-  else if (month > 0) return { value: month, unit: "month" };
+  else if (month > 0 && day > 30) return { value: month, unit: "month" };
   else return { value: day, unit: "day" };
 };
