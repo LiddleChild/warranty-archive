@@ -61,6 +61,9 @@ export default {
       this.lang = this.lang === "en" ? "th" : "en";
       localStorage.setItem("lang", this.lang);
     },
+    reload() {
+      location.reload();
+    },
   },
   setup() {
     let searchValue = ref<string>("");
@@ -109,7 +112,7 @@ export default {
         :done="
           () => {
             isShowingModal = false;
-            updateAllWarranty();
+            reload();
           }
         "
       />
