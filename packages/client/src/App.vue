@@ -64,7 +64,7 @@ export default {
   },
   setup() {
     let searchValue = ref<string>("");
-    let sortingState = ref<SortingState>({ id: "duration", asc: false });
+    let sortingState = ref<SortingState>({ id: "createdAt", asc: false });
 
     let warranties = ref<Warranty[]>([]);
 

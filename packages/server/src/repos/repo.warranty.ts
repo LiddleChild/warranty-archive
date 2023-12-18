@@ -33,7 +33,8 @@ export class WarrantyRepository {
     }
 
     if (sort) {
-      if (sort === "name") query.orderBy(`LOWER(w.${sort})`, direction);
+      if (sort === "createdAt") query.orderBy("w.createdAt", "DESC");
+      else if (sort === "name") query.orderBy(`LOWER(w.${sort})`, direction);
       else if (sort === "duration")
         query
           .orderBy("w.durationUnit", direction)
