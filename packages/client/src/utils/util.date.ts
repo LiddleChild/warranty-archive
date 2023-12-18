@@ -15,12 +15,13 @@ export const getExpireDate = (
   durationUnit: string
 ): Date => {
   let d = new Date(effectiveDate);
-
-  return new Date(
+  let e = new Date(
     d.getFullYear() + parseInt(durationUnit === "year" ? `${duration}` : "0"),
     d.getMonth() + parseInt(durationUnit === "month" ? `${duration}` : "0"),
     d.getDate() + parseInt(durationUnit === "day" ? `${duration}` : "0")
   );
+
+  return new Date(e.getTime() + 24 * 3600 * 1000 - 1); // add 23:59:59.999
 };
 
 export const isExpire = (expireDate: Date): boolean => {

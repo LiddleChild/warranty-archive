@@ -59,8 +59,6 @@ const onSubmitHandler = (event: Event) => {
     }
   };
 
-  console.log(type);
-
   if (type === "create") createWarranty(warranty).then(handler);
   else updateWarranty(warranty).then(handler);
 };
