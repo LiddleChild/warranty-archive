@@ -36,7 +36,11 @@ const onSubmitHandler = (event: Event) => {
   event.preventDefault();
 
   const [y, m, d] = effectiveDate.split("-");
-  const defaultEffectiveDate = new Date(parseInt(y), parseInt(m), parseInt(d));
+  const defaultEffectiveDate = new Date(
+    parseInt(y),
+    parseInt(m) - 1,
+    parseInt(d)
+  );
 
   const warranty: Warranty = {
     id,
