@@ -14,6 +14,16 @@ export type WebStructureWord = {
     duration: string;
     note: string;
     notFound: string;
+    expireDate: {
+      in: string;
+      today: string;
+      expired: string;
+      unit: {
+        year: string;
+        month: string;
+        day: string;
+      };
+    };
   };
   form: {
     title: {

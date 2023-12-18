@@ -15,6 +15,16 @@ export const LanguageWord: { [key in LanguageOption]: WebStructureWord } = {
       duration: "ระยะเวลา",
       note: "หมายเหตุ",
       notFound: "ไม่พบข้อมูลที่ค้นหา",
+      expireDate: {
+        in: "ภายใน",
+        today: "ภายในวันนี้",
+        expired: "หมดการประกันสินค้า",
+        unit: {
+          day: "วัน",
+          month: "เดือน",
+          year: "ปี",
+        },
+      },
     },
     form: {
       title: {
@@ -47,6 +57,16 @@ export const LanguageWord: { [key in LanguageOption]: WebStructureWord } = {
       duration: "Duration",
       note: "Note",
       notFound: "Could not find the specify data.",
+      expireDate: {
+        in: "in",
+        today: "today",
+        expired: "expired",
+        unit: {
+          day: "day",
+          month: "month",
+          year: "year",
+        },
+      },
     },
     form: {
       title: {

@@ -2,17 +2,19 @@
 import { LanguageWord } from "../../lang/lang.app";
 import { LanguageOption } from "../../models/model.lang";
 import { Warranty } from "../../models/model.warranty";
-import {
-  getExpireDate,
-  getFormattedDate,
-  isExpire,
-} from "../../utils/util.date";
+import { getDurationFromNow, getFormattedDate } from "../../utils/util.date";
 
 const { lang, warranty, showModal } = defineProps<{
   lang: LanguageOption;
   warranty: Warranty;
   showModal: (productId?: string) => void;
 }>();
+
+const { value: duration, unit: durationUnit } = getDurationFromNow(
+  warranty.effectiveDate,
+  warranty.duration,
+  warranty.durationUnit
+);
 </script>
 
 <template>
@@ -23,29 +25,20 @@ const { lang, warranty, showModal } = defineProps<{
         getFormattedDate(warranty.effectiveDate, LanguageWord[lang].dateFormat)
       }}
     </td>
-    <td
-      v-bind:class="`align-top py-2 ${
-        isExpire(
-          getExpireDate(
-            warranty.effectiveDate,
-            warranty.duration,
-            warranty.durationUnit
-          )
-        )
-          ? 'text-red-500'
-          : 'text-green-600'
-      }`"
-    >
-      {{
-        getFormattedDate(
-          getExpireDate(
-            warranty.effectiveDate,
-            warranty.duration,
-            warranty.durationUnit
-          ).toString(),
-          LanguageWord[lang].dateFormat
-        )
-      }}
+    <td>
+      <div v-if="duration == 1" class="text-green-600">
+        {{ LanguageWord[lang].content.expireDate.today }}
+      </div>
+
+      <div v-else-if="duration > 0" class="text-green-600">
+        {{
+          `${LanguageWord[lang].content.expireDate.in} ${duration} ${LanguageWord[lang].content.expireDate.unit[durationUnit]}`
+        }}
+      </div>
+
+      <div v-else class="text-red-500">
+        {{ LanguageWord[lang].content.expireDate.expired }}
+      </div>
     </td>
     <td class="align-top break-words min-w-min w-1/2 py-2">
       {{ warranty.note }}
