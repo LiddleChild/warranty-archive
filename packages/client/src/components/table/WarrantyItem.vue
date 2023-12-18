@@ -26,7 +26,10 @@ const { value: duration, unit: durationUnit } = getDurationFromNow(
       }}
     </td>
     <td>
-      <div v-if="duration == 1" class="text-green-600">
+      <div
+        v-if="duration === 1 && durationUnit === 'day'"
+        class="text-green-600"
+      >
         {{ LanguageWord[lang].content.expireDate.today }}
       </div>
 
