@@ -11,7 +11,7 @@ export const LanguageWord: { [key in LanguageOption]: WebStructureWord } = {
     },
     content: {
       productName: "ชื่อสินค้า",
-      effectiveDate: "วันเริ่มผลบังคับ",
+      effectiveDate: "วันเริ่มการคุ้มครอง",
       duration: "ระยะเวลา",
       note: "หมายเหตุ",
       notFound: "ไม่พบข้อมูลที่ค้นหา",
@@ -32,7 +32,7 @@ export const LanguageWord: { [key in LanguageOption]: WebStructureWord } = {
         edit: "แก้ไขประกันสินค้า",
       },
       productName: "ชื่อสินค้า",
-      effectiveDate: "วันเริ่มผลบังคับ",
+      effectiveDate: "วันเริ่มการคุ้มครอง",
       warrantyDuration: "ระยะเวลา",
       note: "หมายเหตุ",
       doneButton: "เสร็จสิ้น",

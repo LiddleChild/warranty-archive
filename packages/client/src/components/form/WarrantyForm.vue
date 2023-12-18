@@ -67,7 +67,7 @@ const onSubmitHandler = (event: Event) => {
 <template>
   <form @submit="onSubmitHandler" class="flex flex-col gap-6 pt-4">
     <div class="flex flex-col">
-      <label class="text-base text-gray-600">{{
+      <label class="text-base text-gray-600 font-semibold">{{
         LanguageWord[lang].form.productName
       }}</label>
       <input
@@ -80,7 +80,7 @@ const onSubmitHandler = (event: Event) => {
     </div>
 
     <div class="flex flex-col">
-      <label class="text-base text-gray-600">{{
+      <label class="text-base text-gray-600 font-semibold">{{
         LanguageWord[lang].form.effectiveDate
       }}</label>
       <input
@@ -92,7 +92,7 @@ const onSubmitHandler = (event: Event) => {
     </div>
 
     <div class="flex flex-col">
-      <label class="text-base text-gray-600">{{
+      <label class="text-base text-gray-600 font-semibold">{{
         LanguageWord[lang].form.warrantyDuration
       }}</label>
       <div class="flex gap-3">
@@ -121,7 +121,7 @@ const onSubmitHandler = (event: Event) => {
     </div>
 
     <div class="flex flex-col">
-      <label class="text-base text-gray-600">{{
+      <label class="text-base text-gray-600 font-semibold">{{
         LanguageWord[lang].form.note
       }}</label>
       <textarea
