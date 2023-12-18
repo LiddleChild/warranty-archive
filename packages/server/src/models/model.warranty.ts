@@ -6,11 +6,11 @@ export class Warranty {
   id: number;
 
   @Column({ type: "varchar" }) name: string;
-  @Column({ type: "timestamp" }) effectiveDate: Date;
+  @Column({ type: "timestamp with time zone" }) effectiveDate: Date;
   @Column({ type: "int8" }) duration: number;
   @Column({ type: "varchar" }) durationUnit: string;
-  @Column({ type: "timestamp" }) createdAt: Date;
-  @Column({ type: "timestamp" }) updatedAt: Date;
+  @Column({ type: "timestamp with time zone" }) createdAt: Date;
+  @Column({ type: "timestamp with time zone" }) updatedAt: Date;
   @Column({ type: "varchar" }) note: string;
 
   public toObject(): Object {
